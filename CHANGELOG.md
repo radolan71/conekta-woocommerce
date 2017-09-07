@@ -1,4 +1,4 @@
-##[2.0.14](https://github.com/conekta/conekta-woocommerce/releases/tag/v2.0.14) - 2017-08-03
+## [2.0.14](https://github.com/conekta/conekta-woocommerce/releases/tag/v2.0.14) - 2017-08-03
 ### Fix
 - HotFix include email in order
 
