@@ -298,7 +298,7 @@ class WC_Conekta_Cash_Gateway extends WC_Conekta_Plugin
         if ($this->ckpg_send_to_conekta())
             {
                 // Mark as on-hold (we're awaiting the notification of payment)
-                $this->order->update_status('on-hold', __( 'Awaiting the conekta OXOO payment', 'woocommerce' ));
+                $this->order->update_status('on-hold', __( 'Awaiting the conekta OXXO payment', 'woocommerce' ));
 
                 // Remove cart
                 $woocommerce->cart->empty_cart();

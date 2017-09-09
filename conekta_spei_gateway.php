@@ -131,20 +131,6 @@ class WC_Conekta_Spei_Gateway extends WC_Conekta_Plugin
                 'title'       => __('Alternate Image to display on checkout, use fullly qualified url, served via https', 'woothemes'),
                 'default'     => __('', 'woothemes')
             ),
-            'description' => array(
-                'title' => __( 'Description', 'woocommerce' ),
-                'type' => 'textarea',
-                'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
-                'default' =>__( 'Por favor realiza el pago en el portal de tu banco utilizando los datos que te enviamos por correo.', 'woocommerce' ),
-                'desc_tip' => true,
-            ),
-            'instructions' => array(
-                'title' => __( 'Instructions', 'woocommerce' ),
-                'type' => 'textarea',
-                'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woocommerce' ),
-                'default' =>__( 'Por favor realiza el pago en el portal de tu banco utilizando los datos que te enviamos por correo.', 'woocommerce' ),
-                'desc_tip' => true,
-            ),
         );
     }
 
@@ -284,7 +270,7 @@ class WC_Conekta_Spei_Gateway extends WC_Conekta_Plugin
         if ($this->ckpg_send_to_conekta())
             {
                 // Mark as on-hold (we're awaiting the notification of payment)
-                $this->order->update_status('on-hold', __( 'Awaiting the conekta OXOO payment', 'woocommerce' ));
+                $this->order->update_status('on-hold', __( 'Awaiting the conekta SPEI payment', 'woocommerce' ));
 
                 // Remove cart
                 $woocommerce->cart->empty_cart();

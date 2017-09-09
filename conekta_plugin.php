@@ -13,7 +13,7 @@ if (!class_exists('Conekta'))
 
 class WC_Conekta_Plugin extends WC_Payment_Gateway
 {
-	public $version  = "2.0.12";
+	public $version  = "2.0.14";
 	public $name = "WooCommerce 2";
 	public $description = "Payment Gateway through Conekta.io for Woocommerce for both credit and debit cards as well as cash payments in OXXO and monthly installments for Mexican credit cards.";
 	public $plugin_name = "Conekta Payment Gateway for Woocommerce";
@@ -78,7 +78,7 @@ class WC_Conekta_Plugin extends WC_Payment_Gateway
     private function ckpg_assemble_email_payment($order){
     	ob_start();
 
-    	wc_get_template( 'emails/email-order-details.php', array( 'order' => esc_htlml($order), 'sent_to_admin' => false, 'plain_text' => false, 'email' => '' ) );
+    	wc_get_template( 'emails/email-order-details.php', array( 'order' => esc_html($order), 'sent_to_admin' => false, 'plain_text' => false, 'email' => '' ) );
 
 		return ob_get_clean();
     }
