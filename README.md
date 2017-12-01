@@ -1,4 +1,4 @@
-Conekta Woocommerce v.3.0.1 Beta
+Conekta Woocommerce v.3.0.2
 ================================
 
 WooCommerce Payment Gateway for Conekta.io
@@ -13,6 +13,7 @@ Current version features:
 * Uses Conekta.js      - No PCI Compliance Issues ( Requires an SSL Certificate)
 * Credit and Debit Card implemented
 * Cash payments implemented
+* Custom description and instructions in offline payments (OXXO and SPEI)
 
 ![alt tag](https://raw.github.com/conekta/conekta-woocommerce/master/readme_files/admin_card.png)
 
@@ -22,6 +23,17 @@ Current version features:
 * Email notifications on successful in cash payment
 
 ![alt tag](https://raw.github.com/conekta/conekta-woocommerce/master/readme_files/email.png)
+
+####Example for custom instructions:
+```
+<ol>
+	<li>Acude a la tienda OXXO más cercana.</li>
+	<li>Inidica en caja que quieres realizar un pago de <b>OXXOPay</b>.</li>
+	<li>Dicta al cajero el número de referencia en esta ficha para que la tecleé directamente en la pantalla de venta.</li>
+	<li>Realiza el pago correspondiente con dinero en efectivo.</li>
+	<li>Al confirmar tu pago, el cajero te entregará un comprobante impreso. <b>En él podrás verificar que se haya realizado correctamente</b>. Conserva este comprobante de pago.</li>
+</ol>
+```
 
 Version Compatibility
 ---------------------
