@@ -1,3 +1,7 @@
+## [3.0.4](https://github.com/conekta/conekta-woocommerce/releases/tag/v3.0.4) - 2018-04-11
+## Fix 
+- Fix for error token already used
+
 ## [3.0.3](https://github.com/conekta/conekta-woocommerce/releases/tag/v3.0.3) - 2018-01-10
 ## Changed
 - Update PHP Lib compatible with PHP 7+
