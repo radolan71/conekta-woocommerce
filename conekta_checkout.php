@@ -45,7 +45,10 @@ function ckpg_conekta_checkout_init_your_gateway()
             include_once('conekta_cash_gateway.php');
             include_once('conekta_spei_gateway.php');
         }
-
+    }
+    if (empty(get_site_option( 'conekta_db_version' ))){
+        include_once("bootstrap.php");
+        ckpg_table_setup();
     }
 }
 
