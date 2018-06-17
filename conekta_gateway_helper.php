@@ -217,29 +217,7 @@ function ckpg_get_request_data($order)
                 )
             );
 
-            //PARAM VALIDATION
-            $name      = string_validation($order->get_shipping_first_name());
-            $last      = string_validation($order->get_shipping_last_name());
-            $address1  = string_validation($order->get_shipping_address_1());
-            $address2  = string_validation($order->get_shipping_address_2());
-            $city      = string_validation($order->get_shipping_city());
-            $state     = string_validation($order->get_shipping_state());
-            $country   = string_validation($order->get_shipping_country());
-            $postal    = post_code_validation($order->get_shipping_postcode());
-
-
-            $shipping_contact = array(
-            'phone'    => $order->get_billing_phone(),
-            'receiver' => sprintf('%s %s', $name, $last),
-            'address' => array(
-                'street1'     => $address1,
-                'street2'     => $address2,
-                'city'        => $city,
-                'state'       => $state,
-                'country'     => $country,
-                'postal_code' => $postal
-            ),
-        );
+            $shipping_contact = build_shipping_contact($order);
         } else {
             $shipping_lines  = array(
                 array(
@@ -285,6 +263,11 @@ function ckpg_get_request_data($order)
 
         if (!empty($order->get_shipping_address_1())) {
             $data = array_merge($data, array('shipping_contact' => $shipping_contact));
+        } else if (isset($data['shipping_lines'])) {
+            $shipping_contact = build_shipping_contact($order, 'billing');
+            if(!empty($shipping_contact)){
+                $data = array_merge($data, array('shipping_contact' => $shipping_contact));
+            }
         }
 
         if (!empty($order->get_customer_note())) {
@@ -299,6 +282,51 @@ function ckpg_get_request_data($order)
     }
 
     return false;
+}
+
+/**
+ * @param WC_Order $order
+ */
+function build_shipping_contact($order, $origin = 'shipping')
+{
+    $method_name = 'get_' . $origin . '_first_name';
+    $name = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_last_name';
+    $last = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_address_1';
+    $address1 = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_address_2';
+    $address2 = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_city';
+    $city = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_state';
+    $state = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_country';
+    $country = string_validation($order->$method_name());
+
+    $method_name = 'get_' . $origin . '_postcode';
+    $postal = post_code_validation($order->$method_name());
+
+    $shipping_contact = array(
+        'phone' => $order->get_billing_phone(),
+        'receiver' => sprintf('%s %s', $name, $last),
+        'address' => array(
+            'street1' => $address1,
+            'street2' => $address2,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'postal_code' => $postal
+        ),
+    );
+
+    return $shipping_contact;
 }
 
 function amount_validation($amount='')
